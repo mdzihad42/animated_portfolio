@@ -252,6 +252,105 @@ header ul a:hover{
     }
   }
 
+.about-me {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    gap: 50px;
+    margin-top: 100px;
+    position: relative;
+    z-index: 10;
+}
+
+.about-img-box {
+    flex: 1;
+    position: relative;
+    max-width: 400px;
+}
+
+.about-img-box img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 0 20px #72a1de;
+    transition: 0.5s;
+    will-change: transform, box-shadow;
+}
+
+.about-img-box img:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 0 40px #72a1de;
+}
+
+.about-info {
+    flex: 1;
+}
+
+.about-info h1 {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.about-info p {
+    font-size: 18px;
+    line-height: 28px;
+    color: lightgray;
+}
+
+.education-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin-top: 100px;
+}
+
+.edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.edu-card {
+    background-color: #080020b7;
+    border: 1px solid gray;
+    border-radius: 20px;
+    padding: 30px;
+    transition: 0.5s;
+    will-change: transform, box-shadow;
+}
+
+.edu-card:hover {
+    box-shadow: 0 0 20px #72a1de;
+    transform: translateY(-10px);
+}
+
+.edu-card h2 {
+    color: #72a1de;
+    margin-bottom: 10px;
+}
+
+.edu-card h3 {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.edu-card .year {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 15px;
+}
+
+.edu-card p {
+    font-size: 15px;
+    line-height: 22px;
+}
+
+
+
 
 
 

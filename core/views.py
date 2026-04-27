@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Project, Skill, ContactMessage
+from .models import Hero, About, Skill, Education, Project, ContactMessage
 
 def home(request):
     if request.method == "POST":
@@ -10,11 +10,17 @@ def home(request):
             ContactMessage.objects.create(full_name=full_name, email=email, message=message)
             return redirect('home')
             
-    projects = Project.objects.all().order_by('order')
+    hero = Hero.objects.first()
+    about = About.objects.first()
     skills = Skill.objects.all()
+    educations = Education.objects.all().order_by('order')
+    projects = Project.objects.all().order_by('order')
     
     context = {
-        'projects': projects,
+        'hero': hero,
+        'about': about,
         'skills': skills,
+        'educations': educations,
+        'projects': projects,
     }
     return render(request, 'index.html', context)

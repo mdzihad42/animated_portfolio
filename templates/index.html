@@ -11,7 +11,11 @@
 </head>
 <body>
     <div class="container">
-        <video class="back-vid" autoplay loop muted plays-inline src="{% static 'videos/galaxy.mp4' %}"></video>
+        {% if hero and hero.background_video %}
+            <video class="back-vid" autoplay loop muted plays-inline src="{{ hero.background_video.url }}"></video>
+        {% else %}
+            <video class="back-vid" autoplay loop muted plays-inline src="{% static 'videos/galaxy.mp4' %}"></video>
+        {% endif %}
 
         <header data-aos="fade-down" data-aos-duration="1000">
             <div class="left">
@@ -23,6 +27,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
             </ul>
 
             <div class="box-icons">
@@ -46,6 +51,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
             </ul>
 
             <div class="social-sidebar">
@@ -66,21 +72,43 @@
                     Front-end Developer Portfolio
                 </div>
 
+                {% if hero %}
+                <h1 data-aos="fade-right" data-aos-duration="1200">
+                    {{ hero.title_prefix }} <span class="gradient">{{ hero.gradient_text_1 }}</span> {{ hero.title_middle }} <span class="gradient">{{ hero.gradient_text_2 }}</span>
+                </h1>
+                <p>{{ hero.description }}</p>
+                {% else %}
                 <h1 data-aos="fade-right" data-aos-duration="1200">Providing <span class="gradient">the best</span> Project <span class="gradient">Experience</span></h1>
-
                 <p>I'm a front-end developer with experience in Website, Mobile and Software development. Check out my projects and skills.</p>
+                {% endif %}
 
                 <button><i class='bx bx-send' ></i> Contact Me</button>
             </div>
             
             <div class="skills-video-box " >
-                <video class="skills-video autoBlur" autoplay loop muted plays-inline src="{% static 'videos/hero-video.mp4' %}"></video>
+                {% if hero and hero.hero_video %}
+                    <video class="skills-video autoBlur" autoplay loop muted plays-inline src="{{ hero.hero_video.url }}"></video>
+                {% else %}
+                    <video class="skills-video autoBlur" autoplay loop muted plays-inline src="{% static 'videos/hero-video.mp4' %}"></video>
+                {% endif %}
             </div>
         
             <div class="scroll-down"></div>
         </section>
 
-        <seaction class="info-section" id="about">
+        {% if about %}
+        <section class="about-me">
+            <div class="about-img-box">
+                <img src="{{ about.image.url }}" alt="About Me">
+            </div>
+            <div class="about-info">
+                <h1 class="gradient">{{ about.title }}</h1>
+                <p>{{ about.description }}</p>
+            </div>
+        </section>
+        {% endif %}
+
+        <section class="info-section" id="about">
             <h1 class="section-title autoDisplay">Hello,There👋</h1>
             <div class="info-cards">
                 <div class="card ">
@@ -113,7 +141,7 @@
                     <img src="{% static 'images/grid4.png' %}" alt="" loading="lazy">
                 </div>
             </div>
-        </seaction>
+        </section>
 
         <section class="my-project" id="projects">
             <h1 class="section-title autoDisplay">My Projects 👨‍💻</h1>
@@ -177,6 +205,22 @@
                         <div class="item" style="--position: 9"><img src="{% static 'images/9.png' %}" alt="" loading="lazy"></div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section class="education-section" id="education">
+            <h1 class="section-title autoDisplay">My Education 🎓</h1>
+            <div class="edu-grid">
+                {% for edu in educations %}
+                <div class="edu-card" data-aos="zoom-in" data-aos-duration="1000">
+                    <h2>{{ edu.degree }}</h2>
+                    <h3>{{ edu.institution }}</h3>
+                    <p class="year">{{ edu.year }}</p>
+                    <p>{{ edu.description }}</p>
+                </div>
+                {% empty %}
+                <p>No education details added yet.</p>
+                {% endfor %}
             </div>
         </section>
 
